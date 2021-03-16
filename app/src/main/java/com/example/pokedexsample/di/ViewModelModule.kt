@@ -5,6 +5,8 @@ import com.example.home.HomeViewModel
 
 val viewModelModule = module {
     factory {
-        HomeViewModel()
+        HomeViewModel(
+            getPokemonListUseCase = get()
+        )
     }
 }

@@ -1,6 +1,7 @@
 package com.example.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.home.databinding.FragmentHomeBinding
@@ -35,6 +36,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun observe(viewModel: HomeViewModel) {
         viewModel.run {
             // HomeViewModelのLiveDataをobserveする。
+
+            this.model.observe(viewLifecycleOwner) {
+                if (it.error != null) {
+                    Log.d("pokemonListResponse", "${it.error}")
+                } else {
+                    Log.d("pokemonListResponse", "${it.pokemonListResponse}")
+                }
+            }
         }
     }
 
